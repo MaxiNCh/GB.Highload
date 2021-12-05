@@ -1,0 +1,14 @@
+version: "4.3"
+
+services:
+    apache2:
+        container_name: apache2-highload
+        image: apache2-highload-image
+        build:
+            context: .
+            dockerfile: docker/apache2/DockerFile
+        volumes:
+            - ./:/var/www
+        ports:
+            - "81:80"
+            - "443:443"
