@@ -26,7 +26,7 @@ RUN apt-get update && \
 RUN apt-get update -y
 RUN rm -R /etc/apache2/sites-enabled/* /etc/apache2/sites-available/* /var/www/*
 
-EXPOSE 80 443
+EXPOSE 80 
 COPY ./docker/apache2/conf/apache2.conf /etc/apache2/apache2.conf
 
 COPY ./docker/apache2/conf/php.ini /etc/php/8.0/apache2/php.ini

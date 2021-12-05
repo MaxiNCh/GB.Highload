@@ -2,20 +2,29 @@ version: "4.3"
 
 services:
     nginx:
-        container_name: nginx
+        container_name: nginx-highload
         image: nginx:latest
         ports:
             - "80:80"
         volumes:
             - ./docker/nginx/hosts:/etc/nginx/conf.d
             - ./:/var/www
-        links:
-            - php
 
     php:
-        container_name: php
+        container_name: php-highload
         build:
             context: .
             dockerfile: ./docker/nginx/php/DockerFile
         volumes:
             - ./:/var/www
+
+    apache2:
+        container_name: apache2-highload
+        image: apache2-highload-image
+        build:
+            context: .
+            dockerfile: docker/apache2/DockerFile
+        volumes:
+            - ./:/var/www
+        ports:
+            - "81:80"
