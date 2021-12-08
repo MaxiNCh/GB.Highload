@@ -8,15 +8,9 @@ services:
             - "80:80"
         volumes:
             - ./docker/nginx/hosts:/etc/nginx/conf.d
-            - ./:/var/www
+        depends_on:
+            - apache2
 
-    php:
-        container_name: php-highload
-        build:
-            context: .
-            dockerfile: ./docker/nginx/php/DockerFile
-        volumes:
-            - ./:/var/www
 
     apache2:
         container_name: apache2-highload
@@ -26,5 +20,3 @@ services:
             dockerfile: docker/apache2/DockerFile
         volumes:
             - ./:/var/www
-        ports:
-            - "81:80"
