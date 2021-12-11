@@ -25,7 +25,10 @@ RUN apt-get update && \
   cron systemd supervisor
 RUN apt-get update -y
 
-RUN apt-get install php-dev -y
+RUN apt-get install php-dev npm -y
+
+RUN apt-get install -y nodejs
+
 RUN pecl install xdebug
 RUN rm -R /etc/apache2/sites-enabled/* /etc/apache2/sites-available/* /var/www/*
 RUN mkdir "/var/log/xdebug"

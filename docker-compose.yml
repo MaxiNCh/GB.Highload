@@ -23,3 +23,12 @@ services:
         environment:
             XDEBUG_CONFIG: remote_host=host.docker.internal
             PHP_IDE_CONFIG: serverName=my.highload
+
+    postgres:
+        image: postgres
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: laravel
+            POSTGRES_DB: laravel
