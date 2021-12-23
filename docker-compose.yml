@@ -6,25 +6,29 @@ services:
         image: nginx:latest
         ports:
             - "80:80"
+            - "443:443"
         volumes:
             - ./docker/nginx/hosts:/etc/nginx/conf.d
-            - ./:/var/www
-
-    php:
-        container_name: php-highload
-        build:
-            context: .
-            dockerfile: ./docker/nginx/php/DockerFile
-        volumes:
-            - ./:/var/www
+        depends_on:
+            - apache2
 
     apache2:
         container_name: apache2-highload
-        image: apache2-highload-image
+        image: apache2-highload
         build:
             context: .
             dockerfile: docker/apache2/DockerFile
         volumes:
             - ./:/var/www
+        environment:
+            XDEBUG_CONFIG: remote_host=host.docker.internal
+            PHP_IDE_CONFIG: serverName=my.highload
+
+    postgres:
+        image: postgres
+        restart: always
         ports:
-            - "81:80"
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: laravel
+            POSTGRES_DB: laravel
