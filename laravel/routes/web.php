@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CacheController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::get('/example-cache', [CacheController::class, 'index']);
+
+Route::get('/example-session', [SessionController::class, 'index']);
