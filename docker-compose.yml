@@ -38,6 +38,15 @@ services:
         ports:
             - 11211:11211
 
+    rabbitmq:
+        image: rabbitmq:latest
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - rabbitmq:/var/lib/rabbitmq
+            - rabbitmq-logs:/var/log/rabbitmq
+
     redis:
         container_name: db-redis
         build:
@@ -49,3 +58,7 @@ services:
             - 6379:6379
         # volumes:
         #     - ./docker/redis/data:/var/lib/redis
+
+volumes:
+    rabbitmq-logs: 
+    rabbitmq: 
