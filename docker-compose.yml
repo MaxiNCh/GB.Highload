@@ -33,6 +33,11 @@ services:
             POSTGRES_PASSWORD: laravel
             POSTGRES_DB: laravel
 
+    memcached:
+        image: memcached:latest
+        ports:
+            - 11211:11211
+
     redis:
         container_name: db-redis
         build:
